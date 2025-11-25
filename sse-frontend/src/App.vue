@@ -5,7 +5,7 @@ import VueUseSSEDemo from './components/VueUseSSEDemo.vue';
 
 <template>
   <SSEDemo />
-  <VueUseSSEDemo />
+  <!-- <VueUseSSEDemo /> -->
 </template>
 
 <style scoped></style>

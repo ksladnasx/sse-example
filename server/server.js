@@ -24,6 +24,8 @@ app.get('/sse', (req, res) => {
   
   // 将客户端响应对象保存起来
   clients.add(res);
+  // 心跳发送
+  
   
   // 客户端断开连接时清理
   req.on('close', () => {

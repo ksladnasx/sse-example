@@ -101,7 +101,7 @@ const startStream = async () => {
     }
     
     const reader = response.body.getReader();
-    const decoder = new TextDecoder();
+    const decoder = new TextDecoder();  
     
     const processStream = ({ done, value }) => {
       if (done) {
@@ -142,9 +142,8 @@ const startStream = async () => {
       
       return reader.read().then(processStream);
     };
-    
     reader.read().then(processStream);
-    
+      
   } catch (error) {
     console.error('流式请求错误:', error);
     isStreaming.value = false;
