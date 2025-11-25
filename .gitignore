@@ -1,0 +1,2 @@
+# 依赖目录，禁止提交庞大的 node_modules
+node_modules/ 
