@@ -40,14 +40,14 @@
 <script setup>
 import { ref, onUnmounted, nextTick } from 'vue';
 
-const outputText = ref('');
-const isConnected = ref(false);
-const isStreaming = ref(false);
-const messageCount = ref(0);
-const connectionStatus = ref('未连接');
-const messages = ref([]);
-const outputElement = ref(null);
-const eventSource = ref(null);
+const outputText = ref(''); // 流式输出文本
+const isConnected = ref(false); // SSE连接状态
+const isStreaming = ref(false); // 流式传输状态
+const messageCount = ref(0);  // 接收的消息计数
+const connectionStatus = ref('未连接'); // 连接状态文本
+const messages = ref([]); //消息队列
+const outputElement = ref(null); // 输出文本容器引用
+const eventSource = ref(null);  // SSE实例
 
 // 连接基础SSE端点
 const connectSSE = () => {
@@ -100,9 +100,11 @@ const startStream = async () => {
       throw new Error('流请求失败');
     }
     
+    //将传来 的二进制数据流转换为文本
     const reader = response.body.getReader();
     const decoder = new TextDecoder();  
     
+    //注意这里是递归
     const processStream = ({ done, value }) => {
       if (done) {
         isStreaming.value = false;
